@@ -1,0 +1,30 @@
+{% extends "blog.tpl.html" %}
+{% block body %}
+<div>
+	<form method="post" action="blog/post">
+		<input type="hidden" name="userid" value="1" />
+		<table>
+			<tr>
+				<td>Title</td>
+				<td><input type="text" name="txttitle" placeholder="title" /></td>
+			</tr>
+			<tr>
+				<td>Body</td>
+				<td><input type="text" name="txtbody" placeholder="Body" /></td>
+			</tr>
+			<tr>
+				<td><button type="submit">Publish</button></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div>
+  <ul class=entries>
+	  {% for blog in blogsdata %}
+		<li><h2>{{ blog.title }}</h2>{{ blog.body|safe }}<small> | <a href=blog/delete/{{blog.blogid}}>Delete</a></small>
+	  {% else %}
+		<li><em>Unbelievable.  No post here so far</em>
+	  {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -3,12 +3,15 @@ from models.blogs import blogs
 
 class BlogController:
 	def render():
-		return render_template('blog.tpl.html')
-	def post_blog():
-		return "blog posted";
+		data = blogs.all_blogs();
+		return render_template('post.tpl.html',blogsdata = data)
+	def post_blog(userid,title,body):
+		blogs.blog_insert(userid,title,body);
+		return;
 		
-	def delete_blog():
-		return "blog deleted";
+	def delete_blog(id):
+		blogs.blog_delete(id);
+		return;
 		
 	def get_blogs():
 		return blogs.all_blogs();
