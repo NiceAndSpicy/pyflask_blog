@@ -5,6 +5,10 @@ class BlogController:
 	def render():
 		data = blogs.all_blogs();
 		return render_template('post.tpl.html',blogsdata = data)
+	
+	def render_json():
+		return str(blogs.all_blogs());
+	
 	def post_blog(userid,title,body):
 		blogs.blog_insert(userid,title,body);
 		return;
